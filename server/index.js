@@ -20,13 +20,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(
-  cors({
-    origin: ["https://url-shortener-delta-eight.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
