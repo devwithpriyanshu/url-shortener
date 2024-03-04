@@ -7,10 +7,16 @@ const URL = require("./models/url");
 const app = express();
 const PORT = 8001;
 
-connectToMongoDB("mongodb+srv://priyanshu:Manu1601@cluster0.xauhuca.mongodb.net/?retryWrites=true&w=majority").then(() =>
-  console.log("Mongodb connected")
+connectToMongoDB(
+  "mongodb+srv://priyanshu:Manu1601@cluster0.xauhuca.mongodb.net/?retryWrites=true&w=majority"
+).then(() => console.log("Mongodb connected"));
+app.use(
+  cors({
+    origin: ["https://url-shortener-delta-eight.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
 );
-app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
