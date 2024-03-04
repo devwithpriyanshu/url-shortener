@@ -1,16 +1,19 @@
 const express = require("express");
 const cors = require("cors");
-const { connectToMongoDB } = require("./connect");
+require("dotenv").config();
+const  connectToMongoDB  = require("./connect");
+const bodyParser = require("body-parser");
+var jsonParser = bodyParser.json();
+const app = express();
+const port = process.env.PORT || 8001;
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
 
-const app = express();
-const PORT = 8001;
 
-connectToMongoDB(
-  "mongodb+srv://priyanshu:Manu1601@cluster0.xauhuca.mongodb.net/?retryWrites=true&w=majority"
-).then(() => console.log("Mongodb connected"));
 
+app.use(cors());
+app.use(jsonParser);
+app.use(express.json());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -20,8 +23,22 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(cors());
-app.use(express.json());
+
+const start = async () => {
+  try {
+    const uri = process.env.MONGO_URI;
+    await connectToMongoDB(uri);
+    app.listen(port, () =>
+      console.log(`Server is listening on port ${port}...`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
+
+/* routes */
 
 app.get("/", (req, res) => {
   return res.send("Hello World");
@@ -45,4 +62,3 @@ app.get("/:shortId", async (req, res) => {
   if (entry) res.redirect(entry.redirectURL);
 });
 
-app.listen(PORT, () => console.log(`Server Started at PORT:${PORT}`));
