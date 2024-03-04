@@ -1,5 +1,5 @@
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
@@ -10,9 +10,19 @@ const PORT = 8001;
 connectToMongoDB(
   "mongodb+srv://priyanshu:Manu1601@cluster0.xauhuca.mongodb.net/?retryWrites=true&w=majority"
 ).then(() => console.log("Mongodb connected"));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(
   cors({
-    origin: ["https://url-shortener-delta-eight.vercel.app/"],
+    origin: ["https://url-shortener-delta-eight.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
