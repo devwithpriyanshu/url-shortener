@@ -7,7 +7,7 @@ const URL = require("./models/url");
 const app = express();
 const PORT = 8001;
 
-connectToMongoDB("mongodb://localhost:27017/short-url").then(() =>
+connectToMongoDB("mongodb+srv://priyanshu:Manu1601@cluster0.xauhuca.mongodb.net/?retryWrites=true&w=majority").then(() =>
   console.log("Mongodb connected")
 );
 app.use(cors());
