@@ -1,13 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+} from "react-router-dom";
 
 const backend_url = import.meta.env.VITE_BACKEND_URL;
 
 const loader = async ({ params }) => {
-  window.location.href = `${backend_url}/${params.shortId}`;
-  return null;
+  let redirectUrl = `${backend_url}/api/url/${params.shortId}`;
+  window.location.href = redirectUrl;
 };
 
 const router = createBrowserRouter([
