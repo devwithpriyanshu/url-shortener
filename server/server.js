@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
+require('dotenv').config({path:'/.env'})
 import app from './app/app.js';
 import connectDB from './connect.js';
-dotenv.config();
 
 try{
   connectDB(process.env.MONGO_URI);
