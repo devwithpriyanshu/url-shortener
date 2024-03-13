@@ -16,6 +16,10 @@ app.use(express.json());
 //   next();
 // });
 
+app.get("/", (req, res) => {
+  res.send("url shortener server");
+});
+
 app.get("/api", (req, res) => {
   res.send("<h1>URL Shortener API home route</h1>");
 });

@@ -1,33 +1,18 @@
-import dotenv from 'dotenv'
-dotenv.config({path:''})
-import app from './app/app.js';
-import connectDB from './connect.js';
+import dotenv from "dotenv";
+dotenv.config({ path: './.env' });
+import app from "./src/app.js";
+import connectDB from "./connect.js";
 
-try{
-  connectDB(process.env.MONGO_URI);
-}catch{
-  console.log('Database connection failed!')
-  process.exit(1)
-}
-
-const port = process.env.PORT || 8080;
-app.listen(port, ()=>{
-  console.log(`Server is running on ${port}`);
-})
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`Server is running at port: ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MONGO db connection failed !!!", err);
+  });
 
 
-  // const shortId = req.params.shortId;
-  // const entry = await URL.findOneAndUpdate(
-  //   {
-  //     shortId,
-  //   },
-  //   {
-  //     $push: {
-  //       visitHistory: {
-  //         timestamp: Date.now(),
-  //       },
-  //     },
-  //   }
-  // );
-  // if (entry) res.redirect(entry.redirectURL);
+
 
