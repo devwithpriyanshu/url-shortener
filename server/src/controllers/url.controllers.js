@@ -7,7 +7,7 @@ const addUrl = async (req, res) => {
   if (!url)
     // if url is empty return
     return res.status(400).json({ msg: "Please provide a valid url" });
-
+  console.log(customId);
   if (customId) {
     // check whether the entered custom Id already exists or not
     let doc = await urlModel.findOne({ shortId: customId });
@@ -20,7 +20,7 @@ const addUrl = async (req, res) => {
       redirectURL: url.replace(/^https?:\/\//, ''),
       visitHistory: [],
     });
-    return res.json({
+    return res.status(200).json({
       msg: "Custom URL Shortened",
       data: {
         shortId: newDoc.shortId,

@@ -9,7 +9,7 @@ const getAnalytics = async (req, res) => {
         return res.res.status(400).send("No Record Found for this Short Id");
     return res.json({
       totalClicks: doc.visitHistory.length,
-      analytics: doc.visitHistory,
+      visitHistory: doc.visitHistory,
     });
 };
 

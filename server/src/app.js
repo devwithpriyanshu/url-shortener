@@ -16,7 +16,7 @@ app.use(express.json());
 //   next();
 // });
 
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
   res.send("url shortener server");
 });
 
@@ -25,5 +25,10 @@ app.get("/api", (req, res) => {
 });
 app.use("/api/url", urlRoutes);
 app.use("/api/analytics", analyticsRoutes);
+
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.status(422).send({ error: err.message || "An error occurred." });
+});
 
 export default app;
