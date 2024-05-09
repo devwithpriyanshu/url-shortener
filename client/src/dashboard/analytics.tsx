@@ -4,16 +4,16 @@ this component consists of two panels
 1st panel displays a list of all the short links user has created these are selectable buttons & can be clicked to view the detail analytics of that particular link shown in the 2nd panel
 
 */
-import { useState } from "react";
-import timestampToDate from "@/utils/TimestampToDate.js";
-import { data } from "../constants.js";
-import Links from "./links.tsx";
+import { useState } from 'react';
+import timestampToDate from '../../utils/TimestampToDate.tsx';
+import { data } from '../constants.js';
+import Links from './linkslist.tsx';
 
 const Analytics = () => {
-  const [id, setId] = useState("");
+  const [id, setId] = useState('');
   const [link, setLink] = useState({
-    shortId: "",
-    redirectUrl: "",
+    shortId: '',
+    redirectUrl: '',
     dateCreated: 0,
     numberOfClicks: 0,
     visitHistory: [{}],

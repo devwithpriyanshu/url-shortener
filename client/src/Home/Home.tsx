@@ -1,8 +1,9 @@
-
-const Home = () => {
+const HomePage: React.FC = () => {
   return (
-    <div>Home</div>
+    <div>
+      <h1>Welcome to the Home Page</h1>
+    </div>
   )
 }
 
-export default Home
+export default HomePage

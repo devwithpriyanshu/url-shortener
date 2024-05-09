@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const urlSchema = new mongoose.Schema(
   {
@@ -6,17 +6,20 @@ const urlSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      maxLength:16
+      maxLength: 16,
     },
     redirectURL: {
       type: String,
       required: true,
+    },
+    clicks:{
+      type: Number,
     },
     visitHistory: [{ timestamp: { type: Number } }],
   },
   { timestamps: true }
 );
 
-const URL = mongoose.model("url", urlSchema);
+const URL = mongoose.model('url', urlSchema);
 
-export default URL
+export default URL;
