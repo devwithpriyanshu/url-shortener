@@ -30,4 +30,4 @@ export default function CopyToClipboardButton ({className, copyText} : ButtonPro
       {isCopied ? <Check size={16}/> : <Copy size={16} />}
     </button>
   );
-};
+}
