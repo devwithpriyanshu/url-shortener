@@ -45,13 +45,14 @@ const getUrls = async (req, res) => {
     }
     const { email } = req.user;
     const user = await userModel
-      .findOne({ email: email })
-      .populate('urls')
-      .exec();
+    .findOne({ email: email })
+    .populate('urls')
+    .exec();
     if (!user.urls) {
       return res.status(200).json([]);
     }
     res.status(200).json(user.urls);
+    // console.log(user.urls[0].createdAt)
   } catch (error) {
     return res.send(error);
   }

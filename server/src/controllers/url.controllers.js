@@ -50,7 +50,7 @@ const handleUrlTrigger = async (req, res) => {
   );
   if (!doc) return res.status(404).send('No Record Found for this Short Id');
 
-  return res.redirect(`http://${doc.redirectURL}`);
+  return res.json({ url: `http://${doc.redirectURL}` });
 };
 
 export { addUrl, handleUrlTrigger };
